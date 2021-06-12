@@ -1,0 +1,38 @@
+/* Icon referenecs */
+
+.add-btn::before {
+    background: url('../vendor/icons/add_white_24dp.svg');
+}
+
+.add-btn-black::before {
+    background: url('../vendor/icons/add_black_24dp.svg');
+}
+
+.delete-btn::before {
+    background: url('../vendor/icons/delete_white_24dp.svg');
+}
+
+.delete-btn-black::before {
+    background: url('../vendor/icons/delete_black_24dp.svg');
+}
+
+.rename-btn::before {
+    background: url('../vendor/icons/drive_file_rename_outline_white_24dp.svg');
+}
+
+.rename-btn-black::before {
+    background: url('../vendor/icons/drive_file_rename_outline_black_24dp.svg');
+}
+
+
+.close-btn::before {
+    background: url('../vendor/icons/close_white_24dp.svg');
+}
+
+.close-btn-black::before {
+    background: url('../vendor/icons/close_black_24dp.svg');
+}
+
+.menu-btn::before {
+    background: url('../vendor/icons/menu_white_24dp.svg');
+}

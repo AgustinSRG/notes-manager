@@ -1,0 +1,429 @@
+*,
+*::after *::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #37474f;
+    color: white;
+}
+
+.sidebar {
+    position: fixed;
+    top: 30px;
+    height: calc(100vh - 30px);
+    width: 18rem;
+    border-right: solid 1px #fff;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #37474f;
+}
+
+.editor {
+    position: fixed;
+    top: 30px;
+    height: calc(100vh - 30px);
+    left: calc(18rem + 1px);
+    width: calc(100vw - 18rem - 1px);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: #1c313a;
+}
+
+.sidebar-list {
+    height: calc(100% - 3rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.btn {
+    border: none;
+    border-radius: 50%;
+    margin: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.btn:hover {
+    /*background-color: #455a64;*/
+    opacity: 1;
+}
+
+.btn::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-head {
+    height: 3rem;
+    padding: 0 1rem;
+}
+
+.sidebar-head,
+.sidebar-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+}
+
+.sidebar-noitems {
+    padding: 1rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.sidebar-head {
+    border-bottom: solid 1px #fff;
+    /*margin-bottom: 0.5rem;*/
+}
+
+.sidebar-title {
+    display: block;
+    width: calc(100% - 88px);
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: xx-large;
+}
+
+.sidebar-item-name {
+    display: block;
+    width: calc(100% - 88px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-item {
+    padding: .3rem 1rem;
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    background-color: #1c313a;
+}
+
+.sidebar-item.selected {
+    background-color: #1c313a;
+}
+
+.sidebar-item.selected .sidebar-item-name {
+    font-weight: bold;
+}
+
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    /* print em-space with class text */
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    background: #fefefe;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: 0.3s;
+    overflow: hidden;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    bottom: -50%;
+}
+
+[data-tooltip-dir="left"]::after {
+    right: 100%;
+}
+
+.sidebar-min {
+    display: none;
+}
+
+.ql-container.ql-snow {
+    height: auto;
+    border: none !important;
+}
+
+.ql-toolbar {
+    border: none !important;
+    height: 3rem;
+    white-space: nowrap;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.ql-editor {
+    border-top: white 1px solid;
+    height: calc(100vh - 30px - 3rem) !important;
+    overflow-y: scroll;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 3px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.search-input {
+    display: block;
+    width: calc(100% - 88px);
+    color: white;
+    background-color: #37474f;
+    border: none;
+    box-shadow: none;
+    font-size: larger;
+    padding: 0;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.sidebar-item-lines,
+.sidebar-item-last-edit {
+    display: block;
+    width: 100%;
+    font-size: x-small;
+    color: lightgrey;
+    padding: 2px 0;
+}
+
+
+/* Modals */
+
+.modal-container {
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.modal {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background-color: #37474f;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s
+}
+
+.fade-enter,
+.fade-leave-to
+{
+    opacity: 0
+}
+
+.modal.modal-lg {
+    max-width: 800px;
+}
+
+.modal .modal-header {
+    border-bottom: 1px solid #fefefe;
+    padding: 0.5rem 0 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.modal-title {
+    width: calc(100% - 44px);
+    font-size: 1.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+
+.modal-body {
+    padding: 1rem;
+    position: relative;
+}
+
+.modal-footer {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #fefefe;
+}
+
+.modal-footer>:not(:last-child) {
+    margin-right: .25rem;
+}
+
+.modal-btn {
+    cursor: pointer;
+    border: 1px solid transparent;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background: #eeeeee;
+}
+
+.modal-btn:enabled:hover {
+    background: #bcbcbc;
+}
+
+.modal-btn:disabled {
+    cursor: not-allowed;
+}
+
+.modal-icon-btn {
+    display: flex;
+    align-items: center;
+}
+
+.modal-icon-btn::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 0.2rem;
+}
+
+.modal-icon-btn:disabled::before {
+    opacity: 0.3;
+}
+
+
+/* Forms */
+
+.form-group {
+    padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group label {
+    display: block;
+    width: 100%;
+    padding-bottom: 0.3rem;
+}
+
+.form-control {
+    outline: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #1c313a;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+}
+
+.form-fill {
+    display: block;
+    width: 100%;
+}
+
+.form-group .invalid-feedback {
+    color: red;
+    font-size: small;
+    display: block;
+    width: 100%;
+    padding-top: 0.2rem;
+}
+
+.editor-loader, .editor-not-chosen {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    width: 100%;
+}
+
+.sidebar-loader {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.shl {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.ql-tooltip.ql-editing {
+    top: 0.5rem !important;
+    left: auto !important;
+    right: 0.5rem !important;
+    transform: none !important;
+}
+
+.ql-snow .ql-picker-label::before {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.ql-picker-options {
+    max-height: 10rem;
+    overflow-y: auto;
+}
