@@ -161,6 +161,7 @@ Notes.waitForFonts(function (fonts) {
                     this.clearEditor();
                 }
             }.bind(this));
+            Notes.setSavingCallback(this.savePendingChanges.bind(this));
         },
         template: '' +
     

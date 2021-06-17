@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const path = require('path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -11,6 +11,10 @@ const gotTheLock = app.requestSingleInstanceLock()
 if (!gotTheLock) {
     app.quit();
 }
+
+const appStatus = {
+    closed: false,
+};
 
 const createWindow = () => {
     // Create the browser window.
@@ -27,8 +31,6 @@ const createWindow = () => {
         frame: false,
         icon: path.join(__dirname, 'images', 'icon.png')
     });
-
-    //mainWindow.setOverlayIcon(path.join(__dirname, 'images', 'icon.png'), '')
 
     app.on('second-instance', (event, commandLine, workingDirectory) => {
         // Someone tried to run a second instance, we should focus our window.
@@ -49,6 +51,21 @@ const createWindow = () => {
     if (!app.isPackaged) {
         mainWindow.webContents.openDevTools();
     }
+
+    // Prevent closing from losing data
+    mainWindow.on('close', (e) => {
+        if (appStatus.closed){
+            return;
+        }
+        mainWindow.webContents.send('closing', 'closing-first-stage');
+        e.preventDefault();
+    });
+
+    ipcMain.on('closing-completed', (event, arg) => {
+        // Quit the app
+        appStatus.closed = true;
+        app.quit();
+    });
 };
 
 // This method will be called when Electron has finished

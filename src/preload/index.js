@@ -1,6 +1,6 @@
 // Main preload script
 
-const { contextBridge } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 const fontList = require('font-list');
 
 // Require custom titlebar
@@ -15,6 +15,7 @@ const notesManager = NotesManager.getInstance();
 
 let systemFonts = null;
 let waitingForFonts = null;
+let savingCallback = null;
 
 const Notes = {
     getNotes: function () {
@@ -54,10 +55,36 @@ const Notes = {
             waitingForFonts = fn;
         }
     },
+    setSavingCallback: function(fn) {
+        savingCallback = fn;
+    },
 };
 
-contextBridge.exposeInMainWorld("Notes", Notes);
+let alreadyClosing = false;
 
+ipcRenderer.on("closing", (e, arg) => {
+    if (alreadyClosing) {
+        return;
+    }
+    alreadyClosing = true;
+    if (savingCallback) {
+        var timeout = setTimeout(function () {
+            ipcRenderer.send('closing-completed', 'timeout');
+        }, 3000);
+        try {
+            savingCallback(function () {
+                clearTimeout(timeout);
+                ipcRenderer.send('closing-completed', 'saved');
+            });
+        } catch (ex) {
+            ipcRenderer.send('closing-completed', 'error');
+        }
+    } else {
+        ipcRenderer.send('closing-completed', 'no-callback');
+    }
+});
+
+contextBridge.exposeInMainWorld("Notes", Notes);
 
 fontList.getFonts()
     .then(fonts => {
