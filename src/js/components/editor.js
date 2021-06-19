@@ -176,6 +176,7 @@ Notes.waitForFonts(function (fonts) {
             Vue.nextTick(function () {
                 this.$refs.searcher.setQuill(this.$options.quill);
             }.bind(this));
+            document.addEventListener("keyup", this.onKeyUp.bind(this));
         },
         template: '' +
     
