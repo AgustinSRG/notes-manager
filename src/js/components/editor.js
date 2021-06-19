@@ -104,6 +104,15 @@ Notes.waitForFonts(function (fonts) {
             clearEditor: function () {
                 this.$options.quill.setContents({ ops: [] });
             },
+            onKeyUp: function (e) {
+                if (e.key === "F" || e.key === "f") {
+                    if (e.ctrlKey) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.$refs.searcher.toggle();
+                    }
+                }
+            },
             openNotes: function (id) {
                 this.notChosen = false;
                 this.loading = true;
@@ -119,6 +128,7 @@ Notes.waitForFonts(function (fonts) {
                             this.notChosen = false;
                             this.$options.quill.setContents(delta);
                             this.$options.quill.focus();
+                            this.$refs.searcher.updateSearch();
                         }.bind(this)).catch(function (err) {
                             if (this.fileLoaded !== id) {
                                 return;
@@ -146,6 +156,7 @@ Notes.waitForFonts(function (fonts) {
             this.$options.quill.on('text-change', function (delta, oldDelta, source) {
                 if (source === 'user') {
                     this.dirty = true;
+                    this.$refs.searcher.updateSearch();
                 }
             }.bind(this));
             setInterval(function () {
@@ -162,11 +173,14 @@ Notes.waitForFonts(function (fonts) {
                 }
             }.bind(this));
             Notes.setSavingCallback(this.savePendingChanges.bind(this));
+            Vue.nextTick(function () {
+                this.$refs.searcher.setQuill(this.$options.quill);
+            }.bind(this));
         },
         template: '' +
     
-            '<div class="editor" v-bind:class="{\'disabled\': loading || notChosen}">' +
-    
+            '<div class="editor" v-bind:class="{\'disabled\': loading || notChosen}" @keyup="onKeyUp">' +
+
             // Toolbar
             '   <div class="editor-toolbar">' +
             '       <span class="ql-formats min-750">' +
@@ -210,6 +224,7 @@ Notes.waitForFonts(function (fonts) {
             '<div class="editor-root"></div>' +
             '<div class="editor-loader" v-if="loading"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>' +
             '<div class="editor-not-chosen" v-if="notChosen">Select a note or create a new one to start.</div>' +
+            '<searcher ref="searcher"></searcher>' +
             '' +
     
             '</div>'

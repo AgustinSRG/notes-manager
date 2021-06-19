@@ -57,6 +57,14 @@ body {
     opacity: 1;
 }
 
+.btn:disabled {
+    opacity: 0.5;
+}
+
+.btn:disabled::after {
+    display: none !important;
+} 
+
 .btn::before {
     content: '';
     width: 24px;
@@ -263,8 +271,7 @@ body {
 }
 
 .fade-enter,
-.fade-leave-to
-{
+.fade-leave-to {
     opacity: 0
 }
 
@@ -386,7 +393,8 @@ body {
     padding-top: 0.2rem;
 }
 
-.editor-loader, .editor-not-chosen {
+.editor-loader,
+.editor-not-chosen {
     display: flex;
     justify-content: center;
     position: absolute;
@@ -426,4 +434,86 @@ body {
 .ql-picker-options {
     max-height: 10rem;
     overflow-y: auto;
+}
+
+.searcher {
+    position: fixed;
+    background-color: #37474f;
+    top: calc(3.5rem + 30px);
+    right: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    border: solid 1px white;
+    border-radius: 5px;
+}
+
+.searcher-expander {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.searcher-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.searcher-inputs input {
+    display: block;
+    color: white;
+    background-color: #37474f;
+    border: none;
+    box-shadow: none;
+    padding: 1rem;
+}
+
+.searcher-input-replace, .searcher-buttons-replace {
+    border-top: dashed 1px white !important;
+}
+
+.searcher-inputs input:focus {
+    outline: none;
+}
+
+.searcher-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 2px;
+}
+
+.searcher-buttons-search, .searcher-buttons-replace {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.searcher-results-count {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: smaller;
+}
+
+.search-option-selected {
+    opacity: 1 !important;
+}
+.search-option-selected::before {
+    border: dotted 1px white;
+}
+
+.ql-searched-string {
+    background-color: #f8ff00;
+    color: black;
+    display: inline;
+}
+
+.ql-searched-string-current {
+    background-color: #fbc02d;
+    color: black;
+    display: inline;
 }

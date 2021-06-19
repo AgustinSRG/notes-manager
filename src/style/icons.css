@@ -36,3 +36,40 @@
 .menu-btn::before {
     background: url('../vendor/icons/menu_white_24dp.svg');
 }
+
+.expand-btn::before {
+    background: url('../vendor/icons/navigate_next_white_24dp.svg');
+}
+
+.expand-less-btn::before {
+    background: url('../vendor/icons/expand_less_white_24dp.svg');
+}
+
+.replace-btn::before {
+    background: url('../vendor/icons/edit_white_24dp.svg');
+}
+
+.replace-all-btn::before {
+    background: url('../vendor/icons/edit_note_white_24dp.svg');
+}
+
+.up-btn::before {
+    background: url('../vendor/icons/arrow_upward_white_24dp.svg');
+}
+
+.down-btn::before {
+    background: url('../vendor/icons/arrow_downward_white_24dp.svg');
+}
+
+.match-case-btn::before {
+    background: url('../vendor/icons/text_fields_white_24dp.svg');
+}
+
+.strict-word-btn::before {
+    background: url('../vendor/icons/space_bar_white_24dp.svg');
+}
+
+.regexp-btn::before {
+    background: url('../vendor/icons/filter_alt_white_24dp.svg');
+}
+
