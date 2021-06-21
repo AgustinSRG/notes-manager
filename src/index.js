@@ -1,5 +1,10 @@
+// Index file - Entry point
+
+"use strict";
+
 const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const path = require('path');
+const { WindowManager } = require('./window');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -17,10 +22,14 @@ const appStatus = {
 };
 
 const createWindow = () => {
-    // Create the browser window.
-    const mainWindow = new BrowserWindow({
-        width: 1144,
-        height: 600,
+    // Request window state
+    const winManager = new WindowManager();
+    winManager.load();
+
+    // Window options
+    const options = {
+        width: winManager.w,
+        height: winManager.h,
         minWidth: 648,
         minHeight: 400,
         webPreferences: {
@@ -30,7 +39,18 @@ const createWindow = () => {
         },
         frame: false,
         icon: path.join(__dirname, 'images', 'icon.png')
-    });
+    };
+
+    if (winManager.x !== null) {
+        options.x = winManager.x;
+    }
+
+    if (winManager.y !== null) {
+        options.y = winManager.y;
+    }
+
+    // Create the browser window.
+    const mainWindow = new BrowserWindow(options);
 
     app.on('second-instance', (event, commandLine, workingDirectory) => {
         // Someone tried to run a second instance, we should focus our window.
@@ -40,9 +60,16 @@ const createWindow = () => {
         }
     })
 
+    // Menu
     Menu.setApplicationMenu(Menu.buildFromTemplate([]));
 
-    //mainWindow.maximize();
+    // Initial maximized
+    if (winManager.maximized) {
+        mainWindow.maximize();
+    }
+
+    // Track window state
+    winManager.setWindow(mainWindow);
 
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
@@ -61,6 +88,7 @@ const createWindow = () => {
         e.preventDefault();
     });
 
+    // After data is saved
     ipcMain.on('closing-completed', (event, arg) => {
         // Quit the app
         appStatus.closed = true;
@@ -89,6 +117,3 @@ app.on('activate', () => {
         createWindow();
     }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
