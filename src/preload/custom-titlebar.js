@@ -30,3 +30,13 @@ ipcRenderer.on("theme", (e, arg) => {
     }
 });
 
+const TitleBar = {
+    changeTitle: function (title) {
+        if (!titlebar) {
+            return;
+        }
+        titlebar.updateTitle(title);
+    },
+}
+
+contextBridge.exposeInMainWorld("TitleBar", TitleBar);

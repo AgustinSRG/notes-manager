@@ -73,9 +73,28 @@ Vue.component("sidebar", {
             this.searchingFor = "";
             this.updateSearch();
         },
+        findNotesName: function (id) {
+            var found = this.allNotes.filter(function (note) {
+                return note.id === id;
+            })[0];
+            if (found) {
+                return found.meta.name;
+            } else {
+                return "";
+            }
+        },
         selectNotes: function (id) {
             this.selectedNotes = id;
             this.$emit("notes-selected", id);
+            this.updateTitleBar();
+        },
+        updateTitleBar: function () {
+            var name = this.findNotesName(this.selectedNotes);
+            if (name) {
+                TitleBar.changeTitle(name + ": " + "Notes Manager");
+            } else {
+                TitleBar.changeTitle("Notes Manager");
+            }
         },
         onNotesClick: function (id) {
             this.selectNotes(id);
@@ -139,6 +158,7 @@ Vue.component("sidebar", {
                     }
                 });
                 this.updateSearch();
+                this.updateTitleBar();
             }.bind(this));
     
             Notes.on("file-delete", function (id) {
@@ -148,6 +168,7 @@ Vue.component("sidebar", {
 
                 if (this.selectedNotes === id) {
                     this.selectedNotes = "";
+                    this.updateTitleBar();
                     Vue.nextTick(function () {
                         if (!this.selectedNotes && this.notes.length > 0) {
                             this.selectNotes(this.notes[0].id);
