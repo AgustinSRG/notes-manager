@@ -63,7 +63,58 @@ const createWindow = () => {
     // Menu
     Menu.setApplicationMenu(Menu.buildFromTemplate([
         new MenuItem({
-            role: "editMenu",
+            type: "submenu",
+            label: "Edit",
+            submenu: Menu.buildFromTemplate([
+                new MenuItem({
+                    role: 'undo',
+                }),
+                new MenuItem({
+                    role: 'redo',
+                }),
+                new MenuItem({
+                    type: "separator"
+                }),
+                new MenuItem({
+                    role: 'cut',
+                }),
+                new MenuItem({
+                    role: 'copy',
+                }),
+                new MenuItem({
+                    role: 'paste',
+                }),
+                new MenuItem({
+                    role: 'delete',
+                }),
+                new MenuItem({
+                    type: "separator"
+                }),
+                new MenuItem({
+                    type: "normal",
+                    label: "Search",
+                    accelerator: "CmdOrCtrl+F",
+                    registerAccelerator: true,
+                    click: function () {
+                        mainWindow.webContents.send('search', 'search');
+                    },
+                }),
+                new MenuItem({
+                    type: "normal",
+                    label: "Replace",
+                    accelerator: "CmdOrCtrl+R",
+                    registerAccelerator: true,
+                    click: function () {
+                        mainWindow.webContents.send('search', 'replace');
+                    },
+                }),
+                new MenuItem({
+                    type: "separator"
+                }),
+                new MenuItem({
+                    role: 'selectAll',
+                }),
+            ]),
         }),
         new MenuItem({
             type: "submenu",

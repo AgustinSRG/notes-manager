@@ -104,15 +104,6 @@ Notes.waitForFonts(function (fonts) {
             clearEditor: function () {
                 this.$options.quill.setContents({ ops: [] });
             },
-            onKeyUp: function (e) {
-                if (e.key === "F" || e.key === "f") {
-                    if (e.ctrlKey) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        this.$refs.searcher.toggle();
-                    }
-                }
-            },
             openNotes: function (id) {
                 this.notChosen = false;
                 this.loading = true;
@@ -176,11 +167,10 @@ Notes.waitForFonts(function (fonts) {
             Vue.nextTick(function () {
                 this.$refs.searcher.setQuill(this.$options.quill);
             }.bind(this));
-            document.addEventListener("keyup", this.onKeyUp.bind(this));
         },
         template: '' +
     
-            '<div class="editor" v-bind:class="{\'disabled\': loading || notChosen}" @keyup="onKeyUp">' +
+            '<div class="editor" v-bind:class="{\'disabled\': loading || notChosen}">' +
 
             // Toolbar
             '   <div class="editor-toolbar">' +

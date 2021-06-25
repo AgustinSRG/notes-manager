@@ -121,5 +121,23 @@ ipcRenderer.on("theme", (e, arg) => {
 
 contextBridge.exposeInMainWorld("Theme", Theme);
 
+// Search Trigger
+
+let searchCallback = null;
+
+const SearchTrigger = {
+    handle: function (fn) {
+        searchCallback = fn;
+    },
+};
+
+ipcRenderer.on("search", (e, arg) => {
+    if (searchCallback) {
+        searchCallback(arg);
+    }
+});
+
+contextBridge.exposeInMainWorld("SearchTrigger", SearchTrigger);
+
 // Custom titlebar
 require("./custom-titlebar");

@@ -271,7 +271,10 @@ Vue.component("searcher", {
         },
     },
     mounted: function () {
-
+        SearchTrigger.handle(function (arg) {
+            this.expanded = (arg === "replace");
+            this.open();
+        }.bind(this));
     },
     template: '' +
         '<div class="searcher" v-show="display">' +
