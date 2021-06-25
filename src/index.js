@@ -2,7 +2,7 @@
 
 "use strict";
 
-const { app, BrowserWindow, Menu, ipcMain } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, MenuItem } = require('electron');
 const path = require('path');
 const { WindowManager } = require('./window');
 
@@ -61,7 +61,39 @@ const createWindow = () => {
     })
 
     // Menu
-    Menu.setApplicationMenu(Menu.buildFromTemplate([]));
+    Menu.setApplicationMenu(Menu.buildFromTemplate([
+        new MenuItem({
+            role: "editMenu",
+        }),
+        new MenuItem({
+            type: "submenu",
+            label: "Theme",
+            submenu: Menu.buildFromTemplate([
+                new MenuItem({
+                    type: "radio",
+                    id: "theme_dark",
+                    label: "Dark Theme",
+                    click: function () {
+                        winManager.theme = "dark";
+                        mainWindow.webContents.send('theme', 'dark');
+                        winManager.save();
+                    },
+                    checked: winManager.theme === "dark",
+                }),
+                new MenuItem({
+                    type: "radio",
+                    id: "theme_light",
+                    label: "Light Theme",
+                    click: function () {
+                        winManager.theme = "light";
+                        mainWindow.webContents.send('theme', 'light');
+                        winManager.save();
+                    },
+                    checked: winManager.theme === "light",
+                }),
+            ]),
+        }),
+    ]));
 
     // Initial maximized
     if (winManager.maximized) {
@@ -81,7 +113,7 @@ const createWindow = () => {
 
     // Prevent closing from losing data
     mainWindow.on('close', (e) => {
-        if (appStatus.closed){
+        if (appStatus.closed) {
             return;
         }
         mainWindow.webContents.send('closing', 'closing-first-stage');

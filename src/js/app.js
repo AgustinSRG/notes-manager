@@ -62,5 +62,13 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         window.App = app;
+
+        Theme.onChange(function (theme) {
+            if (theme === "light") {
+                document.querySelector("body").classList.add("light-theme");
+            } else {
+                document.querySelector("body").classList.remove("light-theme");
+            }
+        });
     });
 });

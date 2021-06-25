@@ -1,11 +1,9 @@
 // Main preload script
 
+"ue strict";
+
 const { contextBridge, ipcRenderer } = require('electron');
 const fontList = require('font-list');
-
-// Require custom titlebar
-require("./custom-titlebar");
-
 
 // Notes Manager
 
@@ -86,6 +84,8 @@ ipcRenderer.on("closing", (e, arg) => {
 
 contextBridge.exposeInMainWorld("Notes", Notes);
 
+// Fonts
+
 fontList.getFonts()
     .then(fonts => {
         systemFonts = fonts;
@@ -99,3 +99,27 @@ fontList.getFonts()
             waitingForFonts(fonts.slice());
         }
     });
+
+// Themes
+
+let themeChangeCallback = null;
+
+const Theme = {
+    theme: "dark",
+    onChange: function (fn) {
+        themeChangeCallback = fn;
+        fn(Theme.theme);
+    },
+};
+
+ipcRenderer.on("theme", (e, arg) => {
+    Theme.theme = arg;
+    if (themeChangeCallback) {
+        themeChangeCallback(arg);
+    }
+});
+
+contextBridge.exposeInMainWorld("Theme", Theme);
+
+// Custom titlebar
+require("./custom-titlebar");

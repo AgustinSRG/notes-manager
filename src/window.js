@@ -16,6 +16,7 @@ class WindowManager {
         this.w = 1144;
         this.h = 600;
         this.maximized = false;
+        this.theme = "dark";
 
         this.saving = false;
         this.waitingForSave = false;
@@ -40,6 +41,8 @@ class WindowManager {
             this.h = savedOptions.h;
 
             this.maximized = !!savedOptions.maximized;
+
+            this.theme = savedOptions.theme || "dark";
         } catch (ex) { }
     }
 
@@ -50,6 +53,7 @@ class WindowManager {
             w: this.w,
             h: this.h,
             maximized: this.maximized,
+            theme: this.theme,
         };
     }
 
@@ -94,6 +98,8 @@ class WindowManager {
             this.h = bounds.height;
             this.save();
         }.bind(this));
+
+        win.webContents.send("theme", this.theme);
     }
 }
 

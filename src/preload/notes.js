@@ -1,5 +1,7 @@
 // Notes manager
 
+"use strict";
+
 const Homedir = require('os').homedir();
 const FS = require('fs');
 const Path = require('path');

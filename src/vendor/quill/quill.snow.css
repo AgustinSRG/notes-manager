@@ -451,6 +451,22 @@
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
   color: white;
 }
+.light-theme .ql-snow.ql-toolbar button:hover,
+.light-theme .ql-snow .ql-toolbar button:hover,
+.light-theme .ql-snow.ql-toolbar button:focus,
+.light-theme .ql-snow .ql-toolbar button:focus,
+.light-theme .ql-snow.ql-toolbar button.ql-active,
+.light-theme .ql-snow .ql-toolbar button.ql-active,
+.light-theme .ql-snow.ql-toolbar .ql-picker-label:hover,
+.light-theme .ql-snow .ql-toolbar .ql-picker-label:hover,
+.light-theme .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.light-theme .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+.light-theme .ql-snow.ql-toolbar .ql-picker-item:hover,
+.light-theme .ql-snow .ql-toolbar .ql-picker-item:hover,
+.light-theme .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+.light-theme .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  color: black;
+}
 .ql-snow.ql-toolbar button:hover .ql-fill,
 .ql-snow .ql-toolbar button:hover .ql-fill,
 .ql-snow.ql-toolbar button:focus .ql-fill,
@@ -633,6 +649,10 @@
   background-color: #1c313a;
   border-radius: 3px;
 }
+.light-theme .ql-snow .ql-editor code,
+.light-theme .ql-snow .ql-editor pre {
+  background-color: lightgray;
+}
 .ql-snow .ql-editor pre {
   white-space: pre-wrap;
   margin-bottom: 5px;
@@ -647,6 +667,11 @@
   background-color: #23241f;
   color: #f8f8f2;
   overflow: visible;
+}
+
+.light-theme .ql-snow .ql-editor pre.ql-syntax {
+  color: black;
+  background-color: lightgray;
 }
 .ql-snow .ql-editor img {
   max-width: 100%;
@@ -681,6 +706,9 @@
   padding: 4px 8px;
   position: absolute;
   white-space: nowrap;
+}
+.light-theme .ql-snow .ql-picker-options {
+  background-color: #fefefe;
 }
 .ql-snow .ql-picker-options .ql-picker-item {
   cursor: pointer;
@@ -952,4 +980,24 @@
 }
 .ql-container.ql-snow {
   border: 1px solid #ccc;
+}
+
+.light-theme .ql-stroke {
+  stroke: black !important;
+}
+
+.light-theme .ql-fill {
+  fill: black !important;
+}
+
+.light-theme .ql-snow a {
+  color: black;
+}
+
+.light-theme .ql-snow .ql-picker {
+  color: black !important;
+}
+
+.light-theme button.ql-active {
+  background-color: lightgray !important;
 }

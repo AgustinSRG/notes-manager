@@ -4,72 +4,142 @@
     background: url('../vendor/icons/add_white_24dp.svg');
 }
 
+.light-theme .add-btn::before {
+    background: url('../vendor/icons/add_black_24dp.svg');
+}
+
 .add-btn-black::before {
     background: url('../vendor/icons/add_black_24dp.svg');
+}
+
+.light-theme .add-btn-black::before {
+    background: url('../vendor/icons/add_white_24dp.svg');
 }
 
 .delete-btn::before {
     background: url('../vendor/icons/delete_white_24dp.svg');
 }
 
+.light-theme .delete-btn::before {
+    background: url('../vendor/icons/delete_black_24dp.svg');
+}
+
 .delete-btn-black::before {
     background: url('../vendor/icons/delete_black_24dp.svg');
+}
+
+.light-theme .delete-btn-black::before {
+    background: url('../vendor/icons/delete_white_24dp.svg');
 }
 
 .rename-btn::before {
     background: url('../vendor/icons/drive_file_rename_outline_white_24dp.svg');
 }
 
+.light-theme .rename-btn::before {
+    background: url('../vendor/icons/drive_file_rename_outline_black_24dp.svg');
+}
+
 .rename-btn-black::before {
     background: url('../vendor/icons/drive_file_rename_outline_black_24dp.svg');
 }
 
+.light-theme .rename-btn-black::before {
+    background: url('../vendor/icons/drive_file_rename_outline_white_24dp.svg');
+}
 
 .close-btn::before {
     background: url('../vendor/icons/close_white_24dp.svg');
+}
+
+.light-theme .close-btn::before {
+    background: url('../vendor/icons/close_black_24dp.svg');
 }
 
 .close-btn-black::before {
     background: url('../vendor/icons/close_black_24dp.svg');
 }
 
+.light-theme .close-btn-black::before {
+    background: url('../vendor/icons/close_white_24dp.svg');
+}
+
 .menu-btn::before {
     background: url('../vendor/icons/menu_white_24dp.svg');
+}
+
+.light-theme .menu-btn::before {
+    background: url('../vendor/icons/menu_black_24dp.svg');
 }
 
 .expand-btn::before {
     background: url('../vendor/icons/navigate_next_white_24dp.svg');
 }
 
+.light-theme .expand-btn::before {
+    background: url('../vendor/icons/navigate_next_black_24dp.svg');
+}
+
 .expand-less-btn::before {
     background: url('../vendor/icons/expand_less_white_24dp.svg');
+}
+
+.light-theme .expand-less-btn::before {
+    background: url('../vendor/icons/expand_less_black_24dp.svg');
 }
 
 .replace-btn::before {
     background: url('../vendor/icons/edit_white_24dp.svg');
 }
 
+.light-theme .replace-btn::before {
+    background: url('../vendor/icons/edit_black_24dp.svg');
+}
+
 .replace-all-btn::before {
     background: url('../vendor/icons/edit_note_white_24dp.svg');
+}
+
+.light-theme .replace-all-btn::before {
+    background: url('../vendor/icons/edit_note_black_24dp.svg');
 }
 
 .up-btn::before {
     background: url('../vendor/icons/arrow_upward_white_24dp.svg');
 }
 
+.light-theme .up-btn::before {
+    background: url('../vendor/icons/arrow_upward_black_24dp.svg');
+}
+
 .down-btn::before {
     background: url('../vendor/icons/arrow_downward_white_24dp.svg');
+}
+
+.light-theme .down-btn::before {
+    background: url('../vendor/icons/arrow_downward_black_24dp.svg');
 }
 
 .match-case-btn::before {
     background: url('../vendor/icons/text_fields_white_24dp.svg');
 }
 
+.light-theme .match-case-btn::before {
+    background: url('../vendor/icons/text_fields_black_24dp.svg');
+}
+
 .strict-word-btn::before {
     background: url('../vendor/icons/space_bar_white_24dp.svg');
+}
+
+.light-theme .strict-word-btn::before {
+    background: url('../vendor/icons/space_bar_black_24dp.svg');
 }
 
 .regexp-btn::before {
     background: url('../vendor/icons/filter_alt_white_24dp.svg');
 }
 
+.light-theme .regexp-btn::before {
+    background: url('../vendor/icons/filter_alt_black_24dp.svg');
+}
