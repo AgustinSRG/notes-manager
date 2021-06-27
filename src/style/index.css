@@ -520,6 +520,11 @@ body.light-theme {
     border-radius: 5px;
 }
 
+.light-theme .searcher {
+    border: solid 1px black;
+    background-color: #fefefe;
+}
+
 .searcher-expander {
     display: flex;
     align-items: center;
@@ -542,9 +547,18 @@ body.light-theme {
     padding: 1rem;
 }
 
+.light-theme .searcher-inputs input {
+    color: black;
+    background-color: white;
+}
+
 .searcher-input-replace,
 .searcher-buttons-replace {
     border-top: dashed 1px white !important;
+}
+
+.light-theme .searcher-input-replace, .light-theme .searcher-buttons-replace {
+    border-top: dashed 1px black !important;
 }
 
 .searcher-inputs input:focus {
@@ -580,6 +594,10 @@ body.light-theme {
 
 .search-option-selected::before {
     border: dotted 1px white;
+}
+
+.light-theme .search-option-selected::before {
+    border: dotted 1px black;
 }
 
 .ql-searched-string {
